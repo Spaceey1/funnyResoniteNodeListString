@@ -38,6 +38,8 @@
     <Reference Include="Microsoft.AspNetCore.Http.Connections.Common">
       <HintPath>$(ResonitePath)/Resonite_Data/Managed/Microsoft.AspNetCore.Http.Connections.Common.dll</HintPath>
     </Reference>
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
+
   </ItemGroup>
 
 </Project>

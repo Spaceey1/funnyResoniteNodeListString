@@ -60,7 +60,8 @@ internal class Generator
         var assemblies = new List<Assembly>
         {
             Assembly.Load("FrooxEngine"),
-            Assembly.Load("ProtoFluxBindings")
+            Assembly.Load("ProtoFluxBindings"),
+	    Assembly.Load("ProtoFlux.Nodes.Core")
         };
 
         foreach (var assembly in assemblies)
@@ -136,7 +137,7 @@ internal class Generator
             var commonGenericTypes = WorkerInitializer.GetCommonGenericTypes(type).ToList();
             foreach (var commonType in commonGenericTypes)
             {
-                if (typeManager.IsSupported(commonType) && commonType.IsValidGenericType(true))
+                if (typeManager.IsSupported(commonType))
                 {
                     AddToFunnyString(commonType);
                     break;
