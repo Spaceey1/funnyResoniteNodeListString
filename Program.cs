@@ -22,6 +22,7 @@ internal class Generator
     public Generator()
     {
         InitializeAssembliesAndTypes();
+        GlobalTypeRegistry.Initialize("dummy input", false);
         WorkerInitializer.Initialize(types, true);
         Console.WriteLine("Types loaded successfully.");
     }
@@ -61,7 +62,7 @@ internal class Generator
         {
             Assembly.Load("FrooxEngine"),
             Assembly.Load("ProtoFluxBindings"),
-	    Assembly.Load("ProtoFlux.Nodes.Core")
+            Assembly.Load("ProtoFlux.Nodes.Core"),
         };
 
         foreach (var assembly in assemblies)
