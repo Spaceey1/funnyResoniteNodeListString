@@ -7,17 +7,35 @@ class Program
     static void Main()
     {
         var generator = new Generator();
-        generator.GenerateFunny();
-        Console.WriteLine("Done!");
+        Console.WriteLine("0.Protoflux Nodes\n1.Components\n-1.Exit:");
+        string userInput = Console.ReadLine();
+        switch (userInput)
+        {
+            case "0":
+                generator.GenerateFunny("./funnystring.txt");
+                Console.WriteLine("Done!");
+                break;
+            case "1":
+                generator.GenerateFunny("./componentfunnystring.txt", "[FrooxEngine]FrooxEngine.", null, "ProtoFlux"); //null root category means all categories
+                Console.WriteLine("Done!");
+            break;
+            case "-1":
+                Environment.Exit(0);
+                break;
+            default:
+                Console.WriteLine("Invalid input, exiting...");
+                Environment.Exit(0);
+                break;
+        }
     }
 }
 
 internal class Generator
 {
     private readonly TypeManager typeManager = new(null);
-    private readonly string prefix = "[ProtoFluxBindings]FrooxEngine.ProtoFlux.Runtimes.Execution.Nodes";
     private readonly List<Type> types = new();
     private string funnyString = "|";
+    private string prefix = "[ProtoFluxBindings]FrooxEngine.ProtoFlux.Runtimes.Execution.Nodes";
 
     public Generator()
     {
@@ -27,12 +45,19 @@ internal class Generator
         Console.WriteLine("Types loaded successfully.");
     }
 
-    public void GenerateFunny()
+    public void GenerateFunny
+    (
+        string outputFile,
+        string prefix = "[ProtoFluxBindings]FrooxEngine.ProtoFlux.Runtimes.Execution.Nodes",
+        string rootCategory = "ProtoFlux/Runtimes/Execution/Nodes",
+        string ignoreCategory = ""
+    )
     {
+        this.prefix = prefix;
         try
         {
-            var categoryNode = WorkerInitializer.ComponentLibrary.GetSubcategory("ProtoFlux/Runtimes/Execution/Nodes");
-            var categories = GetCategories(categoryNode).OrderBy(t => t.type.Name.Length);
+            var categoryNode = WorkerInitializer.ComponentLibrary.GetSubcategory(rootCategory);
+            var categories = GetCategories(categoryNode, ignoreCategory).OrderBy(t => t.type.Name.Length);
 
             foreach (var (type, isGeneric) in categories)
             {
@@ -47,7 +72,8 @@ internal class Generator
                 funnyString += "|";
             }
 
-            System.IO.File.WriteAllText("./funnystring.txt", funnyString);
+            System.IO.File.WriteAllText(outputFile, funnyString);
+
         }
         catch (Exception e)
         {
@@ -102,11 +128,14 @@ internal class Generator
 
     }
 
-    private IEnumerable<(Type type, bool isGeneric)> GetCategories(CategoryNode<Type> categoryNode)
+    private IEnumerable<(Type type, bool isGeneric)> GetCategories(CategoryNode<Type> categoryNode, string ignoreCategory = "")
     {
         var foundTypes = new List<(Type type, bool isGeneric)>();
-
-        if (categoryNode == null)
+        if(categoryNode.Name == ignoreCategory)
+        {
+            return foundTypes;
+        }
+        else if (categoryNode == null)
         {
             foundTypes.AddRange(types.Select(type => (type, type.IsGenericTypeDefinition)));
         }
@@ -114,11 +143,10 @@ internal class Generator
         {
             foreach (var subcategory in categoryNode.Subcategories)
             {
-                foundTypes.AddRange(GetCategories(subcategory));
+                foundTypes.AddRange(GetCategories(subcategory, ignoreCategory));
             }
-
-            foundTypes.AddRange(categoryNode.Elements.Select(element => (element, element.IsGenericTypeDefinition)));
         }
+        foundTypes.AddRange(categoryNode.Elements.Select(element => (element, element.IsGenericTypeDefinition)));
 
         return foundTypes;
     }
