@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         var generator = new Generator();
-        Console.WriteLine("0.Protoflux Nodes\n1.Components\n-1.Exit:");
+        Console.WriteLine("0.Protoflux Nodes\n1.Components\n2.Both\n-1.Exit");
         string userInput = Console.ReadLine();
         switch (userInput)
         {
@@ -19,6 +19,11 @@ class Program
                 generator.GenerateFunny("./componentfunnystring.txt", "[FrooxEngine]FrooxEngine.", null, "ProtoFlux"); //null root category means all categories
                 Console.WriteLine("Done!");
             break;
+	    case "2":
+                generator.GenerateFunny("./componentfunnystring.txt", "[FrooxEngine]FrooxEngine.", null, "ProtoFlux"); //null root category means all categories
+                generator.GenerateFunny("./funnystring.txt");
+                Console.WriteLine("Done!");
+		break;
             case "-1":
                 Environment.Exit(0);
                 break;
