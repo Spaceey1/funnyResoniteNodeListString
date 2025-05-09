@@ -1,7 +1,6 @@
 ﻿using Elements.Core;
 using FrooxEngine;
 using System.Reflection;
-
 class Program
 {
     static void Main()
@@ -94,6 +93,7 @@ internal class Generator
             Assembly.Load("FrooxEngine"),
             Assembly.Load("ProtoFluxBindings"),
             Assembly.Load("ProtoFlux.Nodes.Core"),
+	    Assembly.Load("Awwdio"),
         };
 
         foreach (var assembly in assemblies)
