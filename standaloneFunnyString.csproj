@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -15,31 +15,35 @@
 
     <!-- Reference to the local DLL -->
     <Reference Include="Protoflux.Core">
-      <HintPath>$(ResonitePath)/Resonite_Data/Managed/ProtoFlux.Core.dll</HintPath>
+      <HintPath>$(ResonitePath)/ProtoFlux.Core.dll</HintPath>
     </Reference>
     <Reference Include="Protoflux.Nodes.Core">
-      <HintPath>$(ResonitePath)/Resonite_Data/Managed/ProtoFlux.Nodes.Core.dll</HintPath>
+      <HintPath>$(ResonitePath)/ProtoFlux.Nodes.Core.dll</HintPath>
     </Reference>
     <Reference Include="ProtoFlux.Nodes.FrooxEngine">
-      <HintPath>$(ResonitePath)/Resonite_Data/Managed/ProtoFlux.Nodes.FrooxEngine.dll</HintPath>
+      <HintPath>$(ResonitePath)/ProtoFlux.Nodes.FrooxEngine.dll</HintPath>
     </Reference>
     <Reference Include="ProtoFluxBindings">
-      <HintPath>$(ResonitePath)/Resonite_Data/Managed/ProtoFluxBindings.dll</HintPath>
+      <HintPath>$(ResonitePath)/ProtoFluxBindings.dll</HintPath>
     </Reference>
     <Reference Include="FrooxEngine">
-      <HintPath>$(ResonitePath)/Resonite_Data/Managed/FrooxEngine.dll</HintPath>
+      <HintPath>$(ResonitePath)/FrooxEngine.dll</HintPath>
     </Reference>
     <Reference Include="Elements.Core">
-      <HintPath>$(ResonitePath)/Resonite_Data/Managed/Elements.Core.dll</HintPath>
+      <HintPath>$(ResonitePath)/Elements.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Elements.Data">
+      <HintPath>$(ResonitePath)/Elements.Data.dll</HintPath>
+    </Reference>
+
     <Reference Include="Awwdio">
-	<HintPath>$(ResonitePath)/Resonite_Data/Managed/Awwdio.dll</HintPath>
+	<HintPath>$(ResonitePath)/Awwdio.dll</HintPath>
     </Reference>
     <Reference Include="FrooxEngine.Store">
-      <HintPath>$(ResonitePath)/Resonite_Data/Managed/FrooxEngine.Store.dll</HintPath>
+      <HintPath>$(ResonitePath)/FrooxEngine.Store.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Connections.Common">
-      <HintPath>$(ResonitePath)/Resonite_Data/Managed/Microsoft.AspNetCore.Http.Connections.Common.dll</HintPath>
+      <HintPath>$(ResonitePath)/Microsoft.AspNetCore.Http.Connections.Common.dll</HintPath>
     </Reference>
     <PackageReference Include="System.Text.Json" Version="9.0.0" />
 
